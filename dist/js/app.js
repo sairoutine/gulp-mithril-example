@@ -11,7 +11,8 @@ setInterval(function () {
 
 //ビュー
 function view() {
-	return <a href="#">count: {counter}</a>;
+//    return {tag: "a", attrs: {href:"#"}, children: ['count: ' + counter]};
+    return {tag: "a", attrs: {href:"#"}, children: ["count: ", counter]};
 }
 
 //HTML要素にコンポーネントをマウント
