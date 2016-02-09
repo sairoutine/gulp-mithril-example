@@ -1,12 +1,14 @@
-var m = require('mithril');
+'use strict';
+
+var m = require('./mithril');
 
 //カウンター
 var counter = 0;
 
 //タイマーでカウントアップ
 setInterval(function () {
-    counter++;
-    m.redraw(true);
+	counter++;
+	m.redraw(true);
 }, 1000);
 
 //ビュー
@@ -16,4 +18,3 @@ function view() {
 
 //HTML要素にコンポーネントをマウント
 m.mount(document.body, {view: view});
-
