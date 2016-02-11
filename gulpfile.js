@@ -24,6 +24,7 @@ var msx        = require("gulp-msx");
 var rename     = require('gulp-rename');
 var plumber    = require('gulp-plumber');
 var runSequence= require('run-sequence');
+var path       = require('path');
 
 gulp.task('msx', function() {
 	return gulp.src(source_dir)
@@ -33,7 +34,7 @@ gulp.task('msx', function() {
 });
 
 gulp.task('browserify', function() {
-	return browserify(tmp_dir + appjs)
+	return browserify(path.join(tmp_dir, appjs))
 		.bundle()
 		.pipe(plumber())
 		//Pass desired output filename to vinyl-source-stream
@@ -43,7 +44,7 @@ gulp.task('browserify', function() {
 });
 
 gulp.task('minify', function() {
-	return gulp.src(dist_dir + appjs)
+	return gulp.src(path.join(dist_dir, appjs))
 		.pipe(uglify())
 		.pipe(rename(appminjs))
 		.pipe(gulp.dest(dist_dir));
