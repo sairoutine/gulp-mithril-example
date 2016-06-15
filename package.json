@@ -1,13 +1,13 @@
 {
-  "name": "cure3",
+  "name": "gulp-mithril-test",
   "version": "0.0.1",
-  "description": "cure3",
+  "description": "gulp and mithril test",
   "main": "index.js",
   "scripts": {
     "watch": "gulp watch",
     "start": "gulp build"
   },
-  "author": "",
+  "author": "sairoutine",
   "license": "ISC",
   "devDependencies": {
     "browserify": "^12.0.1",
@@ -23,6 +23,6 @@
     "vinyl-source-stream": "^1.1.0"
   },
   "dependencies": {
-    "mithril": "^0.2.2-rc.1"
+    "mithril": "^0.2.5"
   }
 }
