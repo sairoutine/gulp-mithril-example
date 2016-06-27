@@ -20,17 +20,17 @@ var browserify = require('browserify');
 var gulp       = require('gulp');
 var source     = require('vinyl-source-stream');
 var uglify     = require("gulp-uglify");
-var msx        = require("gulp-msx");
 var rename     = require('gulp-rename');
 var plumber    = require('gulp-plumber');
 var runSequence= require('run-sequence');
 var path       = require('path');
 var notify     = require('gulp-notify');
+var babel      = require("gulp-babel");
 
-gulp.task('msx', function() {
+gulp.task('babel', function() {
 	return gulp.src(source_dir)
 	.pipe(plumber({errorHandler: notify.onError('<%= error.message %>')}))
-	.pipe(msx()) 
+	.pipe(babel())
 	.pipe(gulp.dest(tmp_dir));
 });
 
@@ -59,7 +59,7 @@ gulp.task('minify', function() {
 
 gulp.task('build', function(callback) {
 	return runSequence(
-		'msx',
+		'babel',
 		'browserify',
 		'minify',
 		callback
