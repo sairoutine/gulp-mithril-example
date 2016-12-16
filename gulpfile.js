@@ -15,6 +15,10 @@ var appjs = 'app.js';
 // minify後のアプリ名ファイル
 var appminjs = 'app.min.js';
 
+// gulp watch で開く html
+var html_dir = "public";
+var html = "index.html";
+
 var watch      = require('gulp-watch');
 var browserify = require('browserify');
 var gulp       = require('gulp');
@@ -26,6 +30,7 @@ var plumber    = require('gulp-plumber');
 var runSequence= require('run-sequence');
 var path       = require('path');
 var notify     = require('gulp-notify');
+var browserSync= require('browser-sync').create();
 
 gulp.task('msx', function() {
 	return gulp.src(source_dir)
@@ -56,16 +61,29 @@ gulp.task('minify', function() {
 		.pipe(gulp.dest(dist_dir));
 });
 
+gulp.task('reload', function () {
+	return browserSync.reload();
+});
+
+gulp.task('browser-sync', function() {
+	return browserSync.init({
+		server: {
+			baseDir: html_dir,
+			index: html,
+		}
+	});
+});
 
 gulp.task('build', function(callback) {
 	return runSequence(
 		'msx',
 		'browserify',
 		'minify',
+		'reload',
 		callback
 	);
 });
 
-gulp.task('watch', function() {
+gulp.task('watch', ['browser-sync'], function() {
 	gulp.watch('src/js/**/*.js', ['build']);
 });
