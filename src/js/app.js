@@ -1,7 +1,6 @@
 'use strict';
 
-import m from './mithril';
-
+var m = require('./mithril');
 
 //カウンター
 var counter = 0;
