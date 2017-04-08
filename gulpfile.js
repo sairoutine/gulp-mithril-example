@@ -84,6 +84,9 @@ gulp.task('build', function(callback) {
 	);
 });
 
+
 gulp.task('watch', ['browser-sync'], function() {
-	gulp.watch('src/js/**/*.js', ['build']);
+	watch(['src/js/**/*.js'], function(event) {
+		gulp.start("build");
+	});
 });
